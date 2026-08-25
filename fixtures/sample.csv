@@ -1,0 +1,4 @@
+worker_name,trade,completed_pieces,unit_price,night_allowance,quality_deduction,work_date
+Lin,mason,24,18.50,12.75,2.25,2026-08-25
+Mei,carpenter,18,22.00,32.50,0.00,2026-08-25
+Bad,mason,nope,18.50,3.00,0.00,2026-08-25
