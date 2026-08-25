@@ -20,8 +20,6 @@ func (a Aggregator) BuildStatement(input domain.PayrollInput) (domain.PayrollSta
 	if err != nil {
 		return domain.PayrollStatement{}, err
 	}
-	line.NightCents = domain.CentsFromFloat(float64(int(input.Entry.NightAllowance)))
-	line.NetCents = domain.SubCents(domain.AddCents(line.GrossCents, line.NightCents), line.DeductionCents)
 	status := domain.StatementApproved
 	if line.ReviewRequired {
 		status = domain.StatementReview
