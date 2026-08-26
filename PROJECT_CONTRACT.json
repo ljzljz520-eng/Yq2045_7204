@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "metrics": {
+    "production_loc": 2319,
+    "production_files": 26,
+    "production_packages": 9,
+    "test_files": 10,
+    "production_functions": 156,
+    "decision_points": 327
+  },
+  "persistence": {
+    "module": "modernc.org/sqlite",
+    "entities": [
+      "Worker",
+      "WorkEntry",
+      "PayrollStatement",
+      "AuditEvent"
+    ],
+    "reopen_test": "TestPersistenceSurvivesReopen"
+  },
+  "workflows": [
+    {
+      "steps": [
+        "receive worker and work entry",
+        "validate trade, pieces, and amounts",
+        "calculate gross, allowance, deduction, and net",
+        "persist payroll statement and audit event"
+      ],
+      "test": "TestPrimaryWorkflow"
+    },
+    {
+      "steps": [
+        "read deterministic CSV fixture",
+        "normalize rows and report malformed lines",
+        "generate statements for accepted entries",
+        "summarize imported, rejected, and review counts"
+      ],
+      "test": "TestSecondaryWorkflow"
+    },
+    {
+      "steps": [
+        "load persisted statements",
+        "reconcile line totals against statement totals",
+        "export CSV or JSON detail report",
+        "return manager review status and totals"
+      ],
+      "test": "TestTertiaryWorkflow"
+    }
+  ]
+}
